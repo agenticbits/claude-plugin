@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "agentic-bits": {
+      "command": "node",
+      "args": ["/Users/eddie.flores/source/agentic-bits-claude-plugin/dist/index.js"]
+    }
+  }
+}
