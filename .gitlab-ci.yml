@@ -1,0 +1,96 @@
+default:
+  image: node:22-alpine
+
+stages:
+  - validate
+  - build
+  - publish
+  - release
+
+variables:
+  NPM_TOKEN: $NPM_TOKEN  # set in GitLab CI/CD → Variables
+
+# ─── Validate ────────────────────────────────────────────────────────────────
+
+typecheck:
+  stage: validate
+  script:
+    - npm ci
+    - npm run typecheck
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
+
+lint:
+  stage: validate
+  script:
+    - npm ci
+    - npm run lint || true   # advisory only until eslint config is added
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
+
+# ─── Build ───────────────────────────────────────────────────────────────────
+
+build:
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
+
+# ─── Publish to npm ──────────────────────────────────────────────────────────
+
+# Runs only on semver tags: v1.2.3
+publish:npm:
+  stage: publish
+  dependencies:
+    - build
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
+  script:
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - npm publish --access public
+  environment:
+    name: npm-registry
+    url: https://www.npmjs.com/package/@agentic-bits/claude-plugin
+
+# ─── GitLab Release ──────────────────────────────────────────────────────────
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  dependencies: []
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
+  script:
+    - echo "Creating GitLab release for $CI_COMMIT_TAG"
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: "$CI_COMMIT_TAG"
+    description: |
+      ## Installation
+
+      ```bash
+      npm install -g @agentic-bits/claude-plugin
+      ```
+
+      Then run the setup script:
+      ```bash
+      npx @agentic-bits/claude-plugin-setup
+      ```
+
+      See [setup guide](docs/setup-guide.md) for full instructions.
+    assets:
+      links:
+        - name: "npm package"
+          url: "https://www.npmjs.com/package/@agentic-bits/claude-plugin/v/$CI_COMMIT_TAG"

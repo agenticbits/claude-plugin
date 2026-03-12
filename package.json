@@ -1,0 +1,50 @@
+{
+  "name": "@agentic-bits/claude-plugin",
+  "version": "1.0.0",
+  "description": "Claude Code MCP plugin — live git branch status bar with per-repo visibility controls",
+  "author": "Eddie Flores <eddie.flores@raptortech.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "agentic-bits-claude-plugin": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "scripts",
+    "config",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "claude-code",
+    "mcp",
+    "model-context-protocol",
+    "git",
+    "statusbar",
+    "plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:raptortech1/agentic-bits-claude-plugin.git"
+  }
+}
