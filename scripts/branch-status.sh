@@ -43,5 +43,11 @@ if [[ ${#parts[@]} -eq 0 ]]; then
 fi
 
 # Join with separator and prefix with branch symbol
-IFS='  |  '
-echo "⎇ ${parts[*]}"
+output=""
+for i in "${!parts[@]}"; do
+  if [[ $i -gt 0 ]]; then
+    output+="  |  "
+  fi
+  output+="${parts[$i]}"
+done
+echo "⎇ $output"
