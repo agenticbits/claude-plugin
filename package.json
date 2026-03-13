@@ -1,6 +1,6 @@
 {
   "name": "@agenticbits/claude-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Claude Code MCP plugin — live git branch status bar with per-repo visibility controls",
   "author": "Eddie Flores <eddie.flores@raptortech.com>",
   "license": "MIT",
