@@ -1,5 +1,5 @@
 {
-  "name": "@agentic-bits/claude-plugin",
+  "name": "@agenticbits/claude-plugin",
   "version": "1.0.0",
   "description": "Claude Code MCP plugin — live git branch status bar with per-repo visibility controls",
   "author": "Eddie Flores <eddie.flores@raptortech.com>",
@@ -45,6 +45,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:onesmartguy/agentic-bits-claude-plugin.git"
+    "url": "git@github.com:agenticbits/claude-plugin.git"
   }
 }
