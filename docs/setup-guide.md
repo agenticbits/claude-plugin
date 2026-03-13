@@ -22,7 +22,7 @@ brew install jq   # macOS
 ### Option A — Install from npm (after publish)
 
 ```bash
-npm install -g @agentic-bits/claude-plugin
+npm install -g @agenticbits/claude-plugin
 ```
 
 Then run the setup wizard:
@@ -212,5 +212,5 @@ git push origin v1.0.1
 
 The pipeline will:
 1. Typecheck and build
-2. Publish to npm as `@agentic-bits/claude-plugin`
+2. Publish to npm as `@agenticbits/claude-plugin`
 3. Create a GitLab release with install instructions

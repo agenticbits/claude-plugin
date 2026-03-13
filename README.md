@@ -1,4 +1,4 @@
-# @agentic-bits/claude-plugin
+# @agenticbits/claude-plugin
 
 Claude Code MCP plugin that adds a **live git branch status bar** to the Claude footer.
 
