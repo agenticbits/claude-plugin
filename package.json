@@ -45,6 +45,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:eddie.flores/agentic-bits-claude-plugin.git"
+    "url": "git@github.com:onesmartguy/agentic-bits-claude-plugin.git"
   }
 }
